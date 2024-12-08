@@ -1,6 +1,19 @@
 <template>
-  <div class="app">
-    <router-view/>
+  <div :class="[{flexStart: step===1}, 'wrapper']">
+    <transition name="slide">
+      <img src="@/assets/logo_poziomo.png" class="logo" v-if="step===1" />
+    </transition>
+    <transition name="fade">
+      <BgImage v-if="step===0"/>
+    </transition>
+    <Claim v-if="step===0" />
+    <div class="results">
+      <div v-if="step === 1" class="results">
+        <div v-for="resultItem in results" :key="resultItem.data[0].nasa_id">
+          <Item :item="resultItem" :key="resultItem.data[0].nasa_id" />
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -8,13 +21,96 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 * {
   box-sizing: border-box;
+  webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 body{
   font-family: 'Montserrat', sans-serif;
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+
+  .fade-enter-active,
+  .fade-leave-active {
+    transition: opacity 0.5s ease;
+  }
+
+  .fade-enter-from,
+  .fade-leave-to {
+    opacity: 0;
+  }
+
+  .slide-enter-active,
+  .slide-leave-active {
+    transition: margin-top 0.3s ease;
+  }
+
+  .slide-enter-from,
+  .slide-leave-to {
+    margin-top: 50px;
+  }
+
+  .wrapper{
+    margin: 0;
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &.flexStart{
+      justify-content: flex-start;
+    }
+  }
+  .logo{
+    position: absolute;
+    top: 40px;
+  }
+  .results{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 20px;
+  }
 }
 </style>
-<script setup lang="ts">
+
+<script>
+import axios from 'axios'
+import debounce from 'lodash.debounce'
+import Claim from '@/components/Claim.vue'
+/* import Search from '@/components/Search.vue' */
+import BgImage from '@/components/BgImage.vue'
+import Item from '@/components/Item.vue'
+
+const API = 'https://images-api.nasa.gov/'
+
+export default {
+  name: 'HomeView',
+  components: { BgImage, Claim, Item },
+  data () {
+    return {
+      loading: false,
+      step: 0,
+      searchValue: '',
+      results: []
+    }
+  },
+  methods: {
+    handleInput: debounce(function () {
+      this.loading = true
+      axios.get(`${API}search?q=${this.searchValue}&media_type=image`)
+        .then((response) => {
+          this.results = response.data.collection.items
+          this.loading = false
+          this.step = 1
+          console.log(response.data)
+        }).catch((error) => {
+          console.log(error)
+        })
+    }, 500)
+  }
+}
+
 </script>
