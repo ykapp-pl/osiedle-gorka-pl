@@ -1,6 +1,6 @@
 <script>
 export default {
-  name: 'DomyInfoTile',
+  name: 'LocalisationInfoTile',
   data () {
     return {
       showModal: false
@@ -18,17 +18,17 @@ export default {
 
 <template>
   <div class="tile-wrapper">
-    <h3>Twój wymarzony dom!</h3>
+    <h3>Znakomita lokalizacja!</h3>
     <!-- Parent Div -->
     <div class="parent" @click="showModalHandler">
       <!-- Div1 -->
       <div class="div1">
-        <img src="../assets/dom_miniaturka.png" alt="dom - ikona, miniatura" />
+        <img src="../../assets/mapka_miniatura.png" alt="Mapka" />
       </div>
 
       <!-- Div2 -->
       <div class="div2">
-        <p>Poznaj bliźniaki i segmenty zaprojektowane z myślą o Tobie.</p>
+        <p>Zobacz, jak blisko Łodzi i Pabianic znajduje się Twoje przyszłe osiedle.</p>
       </div>
     </div>
 

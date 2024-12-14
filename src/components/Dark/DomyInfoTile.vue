@@ -1,6 +1,6 @@
 <script>
 export default {
-  name: 'KontaktInfoTile',
+  name: 'DomyInfoTile',
   data () {
     return {
       showModal: false
@@ -18,17 +18,17 @@ export default {
 
 <template>
   <div class="tile-wrapper">
-    <h3>Skontaktuj się z nami!</h3>
+    <h3>Twój wymarzony dom!</h3>
     <!-- Parent Div -->
     <div class="parent" @click="showModalHandler">
       <!-- Div1 -->
       <div class="div1">
-        <img src="../assets/telefon_miniatura.png" alt="Telefon - miniatura, ikona" />
+        <img src="../../assets/dom_miniaturka.png" alt="dom - ikona, miniatura" />
       </div>
 
       <!-- Div2 -->
       <div class="div2">
-        <p>Masz pytania? Z przyjemnością odpowiemy.</p>
+        <p>Poznaj bliźniaki i segmenty zaprojektowane z myślą o Tobie.</p>
       </div>
     </div>
 

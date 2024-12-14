@@ -1,6 +1,6 @@
 <script>
 export default {
-  name: 'LocalisationInfoTile',
+  name: 'KontaktInfoTile',
   data () {
     return {
       showModal: false
@@ -18,17 +18,17 @@ export default {
 
 <template>
   <div class="tile-wrapper">
-    <h3>Znakomita lokalizacja!</h3>
+    <h3>Skontaktuj się z nami!</h3>
     <!-- Parent Div -->
     <div class="parent" @click="showModalHandler">
       <!-- Div1 -->
       <div class="div1">
-        <img src="../assets/mapka_miniatura.png" alt="Mapka" />
+        <img src="../../assets/telefon_miniatura.png" alt="Telefon - miniatura, ikona" />
       </div>
 
       <!-- Div2 -->
       <div class="div2">
-        <p>Zobacz, jak blisko Łodzi i Pabianic znajduje się Twoje przyszłe osiedle.</p>
+        <p>Masz pytania? Z przyjemnością odpowiemy.</p>
       </div>
     </div>
 

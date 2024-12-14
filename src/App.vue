@@ -6,7 +6,7 @@
     <transition name="fade">
       <BgImage v-if="step===0"/>
     </transition>
-    <Claim v-if="step===0" />
+    <ClaimR v-if="step===0" />
     <div class="results">
       <div v-if="step === 1" class="results">
         <div v-for="resultItem in results" :key="resultItem.data[0].nasa_id">
@@ -73,14 +73,18 @@ body{
     grid-template-columns: 1fr 1fr;
     grid-gap: 20px;
   }
+  @media (max-width: 600px) {
+    .wrapper{
+      padding: 1px;
+    }
+  }
 }
 </style>
 
 <script>
 import axios from 'axios'
 import debounce from 'lodash.debounce'
-import Claim from '@/components/Claim.vue'
-/* import Search from '@/components/Search.vue' */
+import ClaimR from '@/components/Brite/ClaimR.vue'
 import BgImage from '@/components/BgImage.vue'
 import Item from '@/components/Item.vue'
 
@@ -88,7 +92,7 @@ const API = 'https://images-api.nasa.gov/'
 
 export default {
   name: 'HomeView',
-  components: { BgImage, Claim, Item },
+  components: { BgImage, Item, ClaimR },
   data () {
     return {
       loading: false,
