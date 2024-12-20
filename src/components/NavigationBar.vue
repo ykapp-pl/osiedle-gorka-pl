@@ -2,7 +2,7 @@
   <nav class="navigation-bar">
     <div class="logo-button">
       <button @click="()=>onLogoClick(0)">
-        <img src="../assets/logo_poziomo.png">
+        <img src="../assets/logo_poziomo.png" alt="Logo">
       </button>
     </div>
     <button class="hamburger" @click="toggleMenu">
@@ -40,6 +40,9 @@ export default {
 <style scoped>
 .navigation-bar {
   width: 100%;
+  position: fixed; /* Umożliwia przyklejenie paska nawigacyjnego do górnej części ekranu */
+  top: 0; /* Ustawia pasek nawigacyjny na górze strony */
+  left: 0; /* Zapewnia rozciągnięcie na pełną szerokość */
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -47,6 +50,7 @@ export default {
   background: rgba(255,255,255, 0.8);
   border-bottom: 2px solid rgba(48, 71, 54, 0.7);
   box-shadow: 0 4px 10px rgba(48, 71, 54, 0.7);
+  z-index: 1000; /* Zapewnia wyświetlanie paska nawigacyjnego nad innymi elementami */
 }
 
 .logo-button button {
@@ -57,11 +61,12 @@ export default {
   cursor: pointer;
 }
 
-.logo-button img{
+.logo-button img {
   margin-left: 30px;
   max-width: 200px;
   height: auto;
 }
+
 .hamburger {
   display: none;
   font-size: 24px;
@@ -84,6 +89,7 @@ export default {
   text-decoration: none;
   font-size: 16px;
   border-bottom: 1px solid #353535;
+  font-weight: 600;
 }
 
 @media (max-width: 768px) {
@@ -95,7 +101,7 @@ export default {
     right: 20px;
     padding: 10px;
     border-radius: 5px;
-    background: rgba(255,255,255, 0.8);
+    background: rgba(255,255,255, 0.9);
     border: 2px solid rgba(48, 71, 54, 0.7);
     box-shadow: 0 4px 10px rgba(48, 71, 54, 0.7);
   }

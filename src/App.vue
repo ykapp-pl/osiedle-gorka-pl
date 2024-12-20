@@ -7,6 +7,7 @@
       <BgImage />
     </transition>
     <ClaimR v-if="step===0" :changeStep="updateStep" />
+    <LocalisationPage v-if="step===2" />
     <div class="results">
       <div v-if="step === 1" class="results">
         <div v-for="resultItem in results" :key="resultItem.data[0].nasa_id">
@@ -86,10 +87,11 @@ import ClaimR from '@/components/Brite/ClaimR.vue'
 import BgImage from '@/components/BgImage.vue'
 import Item from '@/components/Item.vue'
 import NavigationBar from '@/components/NavigationBar.vue'
+import LocalisationPage from '@/components/LocalisationPage.vue'
 
 export default {
   name: 'HomeView',
-  components: { NavigationBar, BgImage, Item, ClaimR },
+  components: { LocalisationPage, NavigationBar, BgImage, Item, ClaimR },
   data () {
     return {
       loading: false,

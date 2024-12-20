@@ -25,6 +25,7 @@ export default {
         title="Znakomita lokalizacja!"
         description="Zobacz, jak blisko Łodzi i Pabianic znajduje się Twoje przyszłe osiedle."
         :imageSrc="require('@/assets/localisation.png')"
+        :onClick = "()=>changeStep(2)"
       />
       <infoTile
         title="Twój wymarzony dom!"
@@ -36,6 +37,7 @@ export default {
         title="Skontaktuj się z nami!"
         description="Masz pytania? Z przyjemnością odpowiemy."
         :imageSrc="require('@/assets/contact.png')"
+        :onClick = "()=>changeStep(4)"
       />
     </div>
   </div>
@@ -44,7 +46,7 @@ export default {
 <style scoped lang="scss">
 
 .claim-wrapper {
-  margin-top: 20%;
+  margin-top: 3%;
   padding: 30px;
   display: flex;
   flex-direction: column;
