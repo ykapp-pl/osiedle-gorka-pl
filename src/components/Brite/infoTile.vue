@@ -34,7 +34,8 @@ export default {
     imageSrc: {
       type: String,
       required: true
-    }
+    },
+    onClick: Function
   },
   data () {
     return {
@@ -43,8 +44,9 @@ export default {
   },
   methods: {
     showModalHandler () {
-      this.showModal = true
-      console.log('Modal triggered')
+      if (this.onClick) {
+        this.onClick() // Wywołanie przekazanej funkcji
+      }
     }
   }
 }
@@ -65,7 +67,7 @@ export default {
 
 /* Zaokrąglenie obrazka */
 .div1 img {
-  width: 100%;
+  max-width: 150px;
   height: auto;
   border-radius: 10px; /* Zaokrąglone rogi */
 }
@@ -93,15 +95,14 @@ export default {
 }
 
 .tile-wrapper {
-  padding: 15px;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
   color: black;
   background: rgba(white, 0.8);
-  border: 1px solid rgba(black, 0.4);
-  box-shadow: 0 4px 10px rgba(black, 0.4);
+  border: 2px solid rgba(#304736, 0.7);
+  box-shadow: 0 4px 10px rgba(#304736, 0.7);
   border-radius: 15px;
 }
 
@@ -123,10 +124,11 @@ export default {
     margin: 0; /* Usuń ewentualne odstępy */
     font-size: 1rem; /* Zmniejsz rozmiar tekstu, jeśli tytuł jest za długi */
     text-align: left; /* Wyrównanie tytułu do lewej */
-    margin-left: 10px; /* Odstęp między obrazkiem a tytułem */
     white-space: nowrap; /* Zapobiega zawijaniu tekstu */
     overflow: hidden; /* Ukrywa nadmiar tekstu */
     text-overflow: ellipsis; /* Dodaje wielokropek, jeśli tekst jest za długi */
+    order: 2; /* Ustawienie tytułu na drugim miejscu */
+    flex-grow: 1;
   }
 
   .parent {
@@ -142,12 +144,6 @@ export default {
     order: 1; /* Domyślne ustawienie obrazka na pierwszym miejscu */
     flex-shrink: 0; /* Obrazek nie zmniejsza się */
   }
-
-  h3 {
-    order: 2; /* Ustawienie tytułu na drugim miejscu */
-    flex-grow: 1; /* Tytuł może się rozciągać */
-  }
-
   .div2 {
     display: none; /* Ukryj opis na małych ekranach */
   }

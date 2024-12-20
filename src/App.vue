@@ -1,12 +1,12 @@
 <template>
   <div :class="[{flexStart: step===1}, 'wrapper']">
     <transition name="slide">
-      <img src="@/assets/logo_poziomo.png" class="logo" v-if="step===1" />
+      <NavigationBar :onLogoClick = "updateStep" v-if="step!==0"/>
     </transition>
     <transition name="fade">
-      <BgImage v-if="step===0"/>
+      <BgImage />
     </transition>
-    <ClaimR v-if="step===0" />
+    <ClaimR v-if="step===0" :changeStep="updateStep" />
     <div class="results">
       <div v-if="step === 1" class="results">
         <div v-for="resultItem in results" :key="resultItem.data[0].nasa_id">
@@ -51,11 +51,10 @@ body{
   }
 
   .wrapper{
-    margin: 0;
+    margin: auto;
     position: relative;
     width: 100%;
     height: 100vh;
-    padding: 30px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -82,17 +81,15 @@ body{
 </style>
 
 <script>
-import axios from 'axios'
-import debounce from 'lodash.debounce'
+
 import ClaimR from '@/components/Brite/ClaimR.vue'
 import BgImage from '@/components/BgImage.vue'
 import Item from '@/components/Item.vue'
-
-const API = 'https://images-api.nasa.gov/'
+import NavigationBar from '@/components/NavigationBar.vue'
 
 export default {
   name: 'HomeView',
-  components: { BgImage, Item, ClaimR },
+  components: { NavigationBar, BgImage, Item, ClaimR },
   data () {
     return {
       loading: false,
@@ -102,18 +99,9 @@ export default {
     }
   },
   methods: {
-    handleInput: debounce(function () {
-      this.loading = true
-      axios.get(`${API}search?q=${this.searchValue}&media_type=image`)
-        .then((response) => {
-          this.results = response.data.collection.items
-          this.loading = false
-          this.step = 1
-          console.log(response.data)
-        }).catch((error) => {
-          console.log(error)
-        })
-    }, 500)
+    updateStep (newStep) {
+      this.step = newStep // Aktualizacja wartości step
+    }
   }
 }
 

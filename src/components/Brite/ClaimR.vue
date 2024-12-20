@@ -3,7 +3,10 @@ import infoTile from '@/components/Brite/infoTile.vue'
 
 export default {
   name: 'claim_component_r',
-  components: { infoTile }
+  components: { infoTile },
+  props: {
+    changeStep: Function // Przyjmujemy funkcję zmieniającą step
+  }
 }
 
 </script>
@@ -11,7 +14,7 @@ export default {
 <template>
   <div>
     <div class="claim-wrapper">
-      <img src="../../assets/logo_poziome_black.png" alt="logo" >
+      <img src="../../assets/logo_poziomo.png" alt="logo" >
       <br/>
       <p class="subclaim">
         W malowniczej i cichej okolicy, powstają nowoczesne bliźniaki i domy szeregowe. Zamieszkaj komfortowo, blisko natury!
@@ -21,17 +24,18 @@ export default {
       <infoTile
         title="Znakomita lokalizacja!"
         description="Zobacz, jak blisko Łodzi i Pabianic znajduje się Twoje przyszłe osiedle."
-        :imageSrc="require('@/assets/mapka_miniatura.jpg')"
+        :imageSrc="require('@/assets/localisation.png')"
       />
       <infoTile
         title="Twój wymarzony dom!"
         description="Poznaj bliźniaki i segmenty zaprojektowane z myślą o Tobieee."
-        :imageSrc="require('@/assets/dom_miniaturka.jpg')"
+        :imageSrc="require('@/assets/house.png')"
+        :onClick = "()=>changeStep(3)"
       />
       <infoTile
         title="Skontaktuj się z nami!"
         description="Masz pytania? Z przyjemnością odpowiemy."
-        :imageSrc="require('@/assets/telefon_miniatura.jpg')"
+        :imageSrc="require('@/assets/contact.png')"
       />
     </div>
   </div>
@@ -41,17 +45,17 @@ export default {
 
 .claim-wrapper {
   margin-top: 20%;
-  padding: 50px;
+  padding: 30px;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  color: black;
+  color: #353535;
   background: rgba(255,255,255, 0.8);
-  border: 1px solid rgba(black, 0.4);
-  box-shadow: 0 4px 10px rgba(black, 0.4);
+  border: 2px solid rgba(#304736, 0.7);
+  box-shadow: 0 4px 10px rgba(#304736, 0.7);
   border-radius: 15px;
-  max-width: 100%; /* Ograniczenie szerokości na dużych ekranach */
+  max-width: 80%; /* Ograniczenie szerokości na dużych ekranach */
   margin-left: auto; /* Wyśrodkowanie poziome */
   margin-right: auto; /* Wyśrodkowanie poziome */
 }
@@ -88,17 +92,18 @@ export default {
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   grid-column-gap: 30px;
   grid-row-gap: 5px; /* Dodano odstępy między wierszami */
-  width: 100%;
+  max-width: 80%;
+  align-items: center;
+  justify-content: center;
+  margin-left: auto; /* Wyśrodkowanie poziome */
+  margin-right: auto;
 }
 
 /* Responsywność dla bardzo małych ekranów */
 @media (max-width: 600px) {
   .tile_grid {
     grid-template-columns: 1fr; /* Tylko jedna kolumna */
-  }
-  .tile_grid {
     margin-top: 50px;
-    width: 98%;
     padding: 5px;
     display: grid;
     grid-row-gap: 15px;
