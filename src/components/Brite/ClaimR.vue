@@ -16,8 +16,11 @@ export default {
     <div class="claim-wrapper">
       <img src="../../assets/logo_poziomo.png" alt="logo" >
       <br/>
+      <p class="claim">
+        <b>Zamieszkaj komfortowo, blisko natury!</b>
+      </p>
       <p class="subclaim">
-        W malowniczej i cichej okolicy, powstają nowoczesne bliźniaki i domy szeregowe. Zamieszkaj komfortowo, blisko natury!
+        W malowniczej i cichej okolicy, powstają nowoczesne bliźniaki i domy szeregowe.
       </p>
     </div>
     <div class="tile_grid">
@@ -56,7 +59,7 @@ export default {
   background: rgba(255,255,255, 0.8);
   border: 2px solid rgba(#304736, 0.7);
   box-shadow: 0 4px 10px rgba(#304736, 0.7);
-  border-radius: 15px;
+  border-radius: 5px;
   max-width: 80%; /* Ograniczenie szerokości na dużych ekranach */
   margin-left: auto; /* Wyśrodkowanie poziome */
   margin-right: auto; /* Wyśrodkowanie poziome */
@@ -68,21 +71,20 @@ export default {
 }
 
 .claim {
-  font-size: 50px;
+  font-size: 30px;
+  margin-top: 10px;
   font-weight: 500;
-  margin: 0;
-  align-items: center;
-  @media (min-width: 768px) {
-    font-size: 80px;
+  @media (max-width: 600px) {
+    font-size: 19px;
   }
 }
 
 .subclaim {
-  font-size: 20px;
+  font-size: 17px;
   margin-top: 10px;
   font-weight: 500;
-  @media (min-width: 768px) {
-    font-size: 17px;
+  @media (max-width: 600px) {
+    font-size: 12px;
     line-height: 1;
     letter-spacing: 1px;
   }
@@ -105,10 +107,20 @@ export default {
 @media (max-width: 600px) {
   .tile_grid {
     grid-template-columns: 1fr; /* Tylko jedna kolumna */
-    margin-top: 50px;
+    margin-top: 5px;
     padding: 5px;
     display: grid;
-    grid-row-gap: 15px;
+    grid-row-gap: 10px;
+    max-width: 95%;
+  }
+  .claim-wrapper{
+    padding: 10px;
+    max-width: 95%;
+    border-radius: 5px;
+  }
+  .claim-wrapper img {
+    max-width: 80%;
+    height: auto;
   }
 }
 

@@ -8,13 +8,7 @@
     </transition>
     <ClaimR v-if="step===0" :changeStep="updateStep" />
     <LocalisationPage v-if="step===2" />
-    <div class="results">
-      <div v-if="step === 1" class="results">
-        <div v-for="resultItem in results" :key="resultItem.data[0].nasa_id">
-          <Item :item="resultItem" :key="resultItem.data[0].nasa_id" />
-        </div>
-      </div>
-    </div>
+    <HousesPage v-if="step===3" />
   </div>
 </template>
 
@@ -85,13 +79,13 @@ body{
 
 import ClaimR from '@/components/Brite/ClaimR.vue'
 import BgImage from '@/components/BgImage.vue'
-import Item from '@/components/Item.vue'
 import NavigationBar from '@/components/NavigationBar.vue'
 import LocalisationPage from '@/components/LocalisationPage.vue'
+import HousesPage from '@/components/HousesPage.vue'
 
 export default {
   name: 'HomeView',
-  components: { LocalisationPage, NavigationBar, BgImage, Item, ClaimR },
+  components: { HousesPage, LocalisationPage, NavigationBar, BgImage, ClaimR },
   data () {
     return {
       loading: false,
