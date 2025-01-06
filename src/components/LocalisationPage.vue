@@ -3,12 +3,27 @@ import InteractiveMap from '@/components/InteractiveMap.vue'
 
 export default {
   name: 'LocalisationPage',
-  components: { InteractiveMap }
+  components: { InteractiveMap },
+  methods: {
+    resetStep () {
+      this.$emit('update:step', 0)
+    }
+  },
+  props: {
+    step: {
+      type: Number,
+      required: true // Teraz wymagane
+    }
+  }
 }
+
 </script>
 
 <template>
   <div class="localisation-page-wrapper">
+    <div class="exit-button-wrapper">
+      <button class="reset-button" @click="resetStep">&#10005;</button>
+    </div>
     <div class="localisation-page-grid">
       <div class="localisation-tile map-tile">
         <InteractiveMap :location="{ lat: 50.0614, lng: 19.9366 }" :zoom="12" class="map" />
@@ -37,7 +52,6 @@ export default {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
   @media (max-width: 768px){
     margin-top: 50px;
     padding: 5px;

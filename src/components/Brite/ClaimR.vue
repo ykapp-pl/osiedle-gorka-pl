@@ -49,7 +49,7 @@ export default {
 <style scoped lang="scss">
 
 .claim-wrapper {
-  margin-top: 3%;
+  margin-top: 5%;
   padding: 30px;
   display: flex;
   flex-direction: column;
@@ -117,6 +117,7 @@ export default {
     padding: 10px;
     max-width: 95%;
     border-radius: 5px;
+    margin-top: 70px;
   }
   .claim-wrapper img {
     max-width: 80%;

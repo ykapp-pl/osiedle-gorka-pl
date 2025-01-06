@@ -1,6 +1,9 @@
 <template>
   <div class="houses-list-wrapper">
     <!-- Sekcja filtrowania -->
+    <div class="exit-button-wrapper">
+      <button class="reset-button" @click="resetStep">&#10005;</button>
+    </div>
     <div class="filters">
       <select v-model="selectedStatus">
         <option value="">Wszystkie statusy</option>
@@ -31,6 +34,8 @@
         :area="house.area"
         :side="house.side"
         :flats="house.flats"
+        :bathroom="house.bathroom"
+        :rooms="house.rooms"
         :isActive="activeHouseId === house.id"
         @click="setActiveHouse(house.id)"
         @clearActive="clearActiveHouse"
@@ -56,6 +61,12 @@ export default {
       activeHouseId: null // Id aktywnego elementu
     }
   },
+  props: {
+    step: {
+      type: Number,
+      required: true // Teraz wymagane
+    }
+  },
   computed: {
     filteredHouses () {
       return this.domy.filter(house => {
@@ -72,6 +83,9 @@ export default {
     },
     clearActiveHouse () {
       this.activeHouseId = null
+    },
+    resetStep () {
+      this.$emit('update:step', 0)
     }
   },
   async mounted () {

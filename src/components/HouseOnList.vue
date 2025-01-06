@@ -15,8 +15,8 @@
         <p>{{ area }}mkw</p>
       </div>
       <div class="listitem">
-        <h4>liczba mieszkań</h4>
-        <p>{{ flats }}</p>
+        <h4>pokoje</h4>
+        <p>{{ rooms }}</p>
       </div>
       <div class="listitem">
         <h4>status</h4>
@@ -29,8 +29,23 @@
       class="activeTile"
       @click="$emit('click')"
     >
-      <div class="listitem">
+      <div class="imgActiveItem">
         <ImageSlider />
+      </div>
+      <div class="parmasActiveItem">
+        <p>projekt: <b>{{ type }}</b></p>
+        <p>metraż: <b>{{ area }}</b></p>
+        <p>pokoje: <b>{{ rooms }}</b></p>
+        <p>status: <b>{{ status }}</b></p>
+        <p>projekt: <b>{{ type }}</b></p>
+      </div>
+      <div class="desryptionActiveItem">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+          sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+          Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+          Excepteur sint occaecat cupidatat non proident,
+          sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
       </div>
       <button class="close-button" @click.stop="$emit('clearActive')">&times;</button>
     </div>
@@ -50,6 +65,8 @@ export default {
     area: Number,
     side: String,
     flats: String,
+    rooms: String,
+    bathroom: String,
     isActive: Boolean
   }
 }
@@ -69,22 +86,6 @@ export default {
   align-items: center;
   width: 100%;
   cursor: pointer;
-}
-
-.activeTile {
-  display: flex;
-  flex-direction: row;
-  color: black;
-  background: rgba(white, 0.8);
-  border: 2px solid rgba(#304736, 0.7);
-  box-shadow: 0 4px 10px rgba(#304736, 0.7);
-  border-radius: 5px;
-  padding: 5px;
-  justify-items: center;
-  align-items: center;
-  width: 100%;
-  cursor: pointer;
-  position: relative;
 }
 
 .close-button {
@@ -146,6 +147,68 @@ export default {
     height: 70px;
     margin-left: 3px;
     margin-right: 3px;
+  }
+}
+
+.activeTile {
+  display: flex;
+  flex-direction: row;
+  color: black;
+  background: rgba(white, 0.8);
+  border: 2px solid rgba(#304736, 0.7);
+  box-shadow: 0 4px 10px rgba(#304736, 0.7);
+  border-radius: 5px;
+  padding: 5px;
+  justify-items: center;
+  align-items: center;
+  width: 100%;
+  cursor: pointer;
+  p{
+    margin-bottom: 0px;
+  }
+  @media (max-width: 600px) {
+    flex-direction: column;
+    p{
+      margin-top: 3px;
+    }
+  }
+}
+
+.imgActiveItem{
+  padding-right: 10px;
+  padding-left: 10px;
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  text-align: left;
+
+  @media (max-width: 600px) {
+    padding: 5px;
+    border: none;
+    width: 95%;
+  }
+}
+.parmasActiveItem
+{
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+  width: 20%;
+  @media (max-width: 600px) {
+    padding: 5px;
+    border: none;
+    width: 95%;
+  }
+}
+.desryptionActiveItem{
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+  width: 50%;
+  @media (max-width: 600px) {
+    padding: 5px;
+    border: none;
+    width: 95%;
   }
 }
 </style>

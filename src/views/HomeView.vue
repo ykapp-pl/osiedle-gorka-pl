@@ -5,10 +5,11 @@ import BgImage from '@/components/BgImage.vue'
 import NavigationBar from '@/components/NavigationBar.vue'
 import LocalisationPage from '@/components/LocalisationPage.vue'
 import HousesPage from '@/components/HousesPage.vue'
+import ContactPage from '@/components/ContactPage.vue'
 
 export default {
   name: 'HomeView',
-  components: { HousesPage, LocalisationPage, NavigationBar, BgImage, ClaimR },
+  components: { ContactPage, HousesPage, LocalisationPage, NavigationBar, BgImage, ClaimR },
   data () {
     return {
       loading: false,
@@ -27,17 +28,15 @@ export default {
 </script>
 <template>
     <div :class="[{flexStart: step===1}, 'wrapper']">
-      <transition name="slide">
-        <NavigationBar :onLogoClick="updateStep" v-if="step !== 0" />
-      </transition>
-      <transition name="fade">
+        <NavigationBar :onLogoClick="updateStep" />
         <BgImage />
-      </transition>
-
-      <!-- Warunkowe renderowanie innych komponentów -->
-      <ClaimR v-if="step === 0" :changeStep="updateStep" />
-      <LocalisationPage v-if="step === 2" />
-      <HousesPage v-if="step === 3" />
+      <div class="conntent-container">
+        <!-- Warunkowe renderowanie innych komponentów -->
+        <ClaimR v-if="step === 0" :changeStep="updateStep" />
+        <LocalisationPage  v-model:step="step" v-if="step === 2" />
+      </div>
+      <HousesPage v-model:step="step" v-if="step === 3" />
+      <ContactPage v-model:step="step" v-if="step === 4" />
     </div>
     <router-view />
 </template>
@@ -54,25 +53,12 @@ body{
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-
-  .fade-enter-active,
-  .fade-leave-active {
-    transition: opacity 0.5s ease;
-  }
-
-  .fade-enter-from,
-  .fade-leave-to {
-    opacity: 0;
-  }
-
-  .slide-enter-active,
-  .slide-leave-active {
-    transition: margin-top 0.3s ease;
-  }
-
-  .slide-enter-from,
-  .slide-leave-to {
-    margin-top: 50px;
+}
+.conntent-container{
+  width: 80%;
+  margin: 0 auto;
+  @media (max-width: 600px) {
+    width: 100%;
   }
 }
 .wrapper{
@@ -101,5 +87,30 @@ body{
   .wrapper{
     padding: 1px;
   }
+}
+.reset-button {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  color: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.9);
+  padding-left: 10px;
+  padding-right: 10px;
+  border: solid 2px rgba(255, 255, 255, 0.9);
+  border-radius: 5px;
+  font-weight: 800;
+  font-size: 25px;
+  text-align: center;
+  cursor: pointer;
+  background: none;
+  @media (max-width: 600px) {
+    font-size: 15px;
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+}
+.exit-button-wrapper{
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
 }
 </style>
