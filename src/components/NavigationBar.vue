@@ -9,11 +9,11 @@
       ☰
     </button>
     <ul :class="{ 'nav-links': true, 'show-menu': menuOpen }">
-      <li><a href="#inwestycja">Inwestycja</a></li>
-      <li><a href="#domy">Domy</a></li>
-      <li><a href="#deweloper">Deweloper</a></li>
-      <li><a href="#lokalizacja">Lokalizacja</a></li>
-      <li><a href="#kontakt">Kontakt</a></li>
+      <li><button @click="changeStep(5)">Inwestycja</button></li>
+      <li><button @click="changeStep(3)">Domy</button></li>
+      <li><button @click="changeStep(6)">Deweloper</button></li>
+      <li><button @click="changeStep(2)">Lokalizacja</button></li>
+      <li><button @click="changeStep(4)">Kontakt</button></li>
     </ul>
   </nav>
 </template>
@@ -24,7 +24,8 @@ import { ref } from 'vue'
 export default {
   name: 'NavigationBar',
   props: {
-    onLogoClick: Function // Przyjmujemy funkcję zmieniającą step
+    onLogoClick: Function, // Przyjmujemy funkcję zmieniającą step
+    changeStep: Function
   },
   setup () {
     const menuOpen = ref(false)
@@ -84,12 +85,13 @@ export default {
   padding: 0;
 }
 
-.nav-links li a {
+.nav-links li button {
   color: #353535;
-  text-decoration: none;
+  text-decoration: underline;
   font-size: 16px;
-  border-bottom: 1px solid #353535;
   font-weight: 600;
+  border: none;
+  background: none;
 }
 
 @media (max-width: 768px) {

@@ -4,8 +4,8 @@
       <img :src="currentImage" alt="Image Slider" />
     </div>
     <div class="controls">
-      <button @click="prevImage" :disabled="isFirstImage">← Wstecz</button>
-      <button @click="nextImage" :disabled="isLastImage">Dalej →</button>
+      <button @click="prevImage" :disabled="isFirstImage">←</button>
+      <button @click="nextImage" :disabled="isLastImage">→</button>
     </div>
   </div>
 </template>
@@ -75,22 +75,19 @@ export default {
 
 .controls {
   display: flex;
-  gap: 10px;
+  gap: 90px;
 }
 
 .controls button {
-  padding: 10px 20px;
-  font-size: 16px;
-  background-color: #304736;
-  color: white;
+  padding: 0;
+  font-size: 40px;
+  font-weight: bold;
+  background-color: rgba(255,255,255, 0.1);
+  color: #304736;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-}
-
-.controls button:hover {
-  background-color: #f39c12;
 }
 
 .controls button:disabled {

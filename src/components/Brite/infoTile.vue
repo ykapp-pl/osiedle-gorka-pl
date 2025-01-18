@@ -70,6 +70,7 @@ export default {
   flex-direction: column;
   align-items: center;
   text-align: center;
+  padding: 15px;
   color: black;
   background: rgba(white, 0.8);
   border: 2px solid rgba(#304736, 0.7);

@@ -16,6 +16,9 @@ export default {
 </script>
 
 <template>
+  <div class="exit-button-wrapper" style="margin-top: 70px; margin-right: 50px">
+    <button class="reset-button" @click="resetStep">&#10005;</button>
+  </div>
   <div class="contact-wrapper">
     <h1>Jak możesz się z nami skonaktować?</h1>
     <div class="contact-grid">
@@ -43,7 +46,7 @@ export default {
  .contact-wrapper {
    display: flex;
    flex-direction: column;
-   margin-top: 70px;
+   margin-top: 15px;
    padding: 10px;
    color: black;
    background: rgba(255, 255, 255, 0.9);
@@ -54,6 +57,10 @@ export default {
    h1{
      text-align: center;
      margin-bottom: 0;
+     @media (max-width: 600px) {
+       font-size: 20px;
+       margin-bottom: 0;
+     }
    }
    p{
      margin-bottom: 0px;
@@ -66,6 +73,13 @@ export default {
    grid-column-gap: 30px;
    max-width: 80%;
    margin: auto; /* Wyśrodkowanie elementów w osi poziomej */
+   @media (max-width: 600px) {
+     grid-template-rows: repeat(auto-fit, minmax(200px, 1fr));
+     grid-row-gap: 1px;
+     padding: 10px;
+     align-content: center;
+     justify-items: center;
+   }
  }
 
  .contact-item {
@@ -75,6 +89,10 @@ export default {
    justify-content: center;
    padding: 15px;
    text-align: center;
+   @media (max-width: 600px) {
+     width: 80%;
+     padding: 5px;
+   }
  }
 
  .contact-item img {

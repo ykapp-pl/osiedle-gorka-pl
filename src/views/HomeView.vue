@@ -6,10 +6,12 @@ import NavigationBar from '@/components/NavigationBar.vue'
 import LocalisationPage from '@/components/LocalisationPage.vue'
 import HousesPage from '@/components/HousesPage.vue'
 import ContactPage from '@/components/ContactPage.vue'
+import InwestycjaPage from '@/components/Inwestycja.vue'
+import DeveloperPage from '@/components/DeveloperPage.vue'
 
 export default {
   name: 'HomeView',
-  components: { ContactPage, HousesPage, LocalisationPage, NavigationBar, BgImage, ClaimR },
+  components: { DeveloperPage, InwestycjaPage, ContactPage, HousesPage, LocalisationPage, NavigationBar, BgImage, ClaimR },
   data () {
     return {
       loading: false,
@@ -28,7 +30,7 @@ export default {
 </script>
 <template>
     <div :class="[{flexStart: step===1}, 'wrapper']">
-        <NavigationBar :onLogoClick="updateStep" />
+        <NavigationBar :onLogoClick="updateStep" :changeStep="updateStep"/>
         <BgImage />
       <div class="conntent-container">
         <!-- Warunkowe renderowanie innych komponentów -->
@@ -37,6 +39,8 @@ export default {
       </div>
       <HousesPage v-model:step="step" v-if="step === 3" />
       <ContactPage v-model:step="step" v-if="step === 4" />
+      <InwestycjaPage v-model:step="step" v-if="step === 5" />
+      <DeveloperPage v-model:step="step" v-if="step === 6" />
     </div>
     <router-view />
 </template>
